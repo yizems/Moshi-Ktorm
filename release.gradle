@@ -1,0 +1,4 @@
+project.ext {
+    GITHUB_USER_NAME = "yizems"
+    GITHUB_TOKEN = "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"
+}

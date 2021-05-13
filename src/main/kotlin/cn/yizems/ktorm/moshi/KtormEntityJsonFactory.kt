@@ -49,13 +49,13 @@ class KtormEntityJsonAdapter(type: Class<*>, private val moshi: Moshi) : JsonAda
 
     private val propertyConfigs by lazy {
         properties.map {
-            val noTransientAnnotation = it.findAnnotation<Transient>() == null
+            val jsonIgnoreAnnotation = it.findAnnotation<JsonIgnore>()
             PropertyConfig(
                 it.name,
                 it.javaGetter!!.returnType,
                 it.findAnnotation<Json>()?.name,
-                noTransientAnnotation,
-                noTransientAnnotation,
+                jsonIgnoreAnnotation?.serialize == false,
+                jsonIgnoreAnnotation?.deserialize == false,
             )
         }
     }
